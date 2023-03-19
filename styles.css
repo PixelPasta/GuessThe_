@@ -1,0 +1,60 @@
+.jumbotron {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+}
+.card {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+}
+.lead {
+    padding-bottom: 10px;
+} 
+canvas {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+  }
+  p{
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+  
+  .main_container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    width: 100%;
+  }
+  
+  span{
+    font-family: Arial;
+  }
+  .footer {
+    width: 100%;
+    height: 60px;
+  
+}
+.footer-text {
+    padding: 0%;
+    margin: 0%;
+    display: inline;
+    position: relative;
+    top: 3px;
+}
+.footer-text a:link{
+    text-decoration: none;
+    color: white
+}
+.footer-text a:hover{
+    text-shadow: 5px 3px 4px rgba(150, 150, 150, 1);
+}
+.footer-text a:visited{
+    text-decoration: none;
+    color: white
+}
