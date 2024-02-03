@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const fetch = require('node-fetch')
+
 const util = require('util')
 
 app.set('view engine', 'ejs')
@@ -15,64 +16,65 @@ app.get('/flag', async (req, res) => {
     const Headers = fetch.Headers
         let headers = new Headers();
         headers.set('Authorization', process.env.token)
-        let fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        let fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
          fetched = await fetched.json()
+         
     object.country = fetched.Data.name.common
     let order = Math.floor(Math.random() * 4)
     if (order == 0) order = 1
     if (order == 1) {
-        object.flag1 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag2 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag2 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag3 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
+        object.flag3 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
         object.op1 = `./correct/?ans=${object.country}&flag=${object.flag1}`
         object.op2 = `./incorrect/?ans=${object.country}&flag=${object.flag1}`
         object.op3 = `./incorrect/?ans=${object.country}&flag=${object.flag1}`
     }
     if (order == 2) {
-        object.flag2 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag2 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag1 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag3 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
+        object.flag3 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
         object.op1 = `./incorrect/?ans=${object.country}&flag=${object.flag2}`
         object.op2 = `./correct/?ans=${object.country}&flag=${object.flag2}`
         object.op3 = `./incorrect/?ans=${object.country}&flag=${object.flag2}`
     }
     if (order == 3) {
-        object.flag3 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag3 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag1 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
-        fetched = await fetch(`https://api.dagpi.xyz/data/flag`, {
+        object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
+        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
-        object.flag2 = `https://www.countryflagicons.com/FLAT/64/${fetched.Data.altSpellings[0]}.png`
+        object.flag2 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
         object.op1 = `./incorrect/?ans=${object.country}&flag=${object.flag3}`
         object.op2 = `./incorrect/?ans=${object.country}&flag=${object.flag3}`
         object.op3 = `./correct/?ans=${object.country}&flag=${object.flag3}`
@@ -181,49 +183,59 @@ app.get('/logoIncorrect', async (req, res) => {
 })
 
 app.get('/color', async (req, res) => {
+  console.time("Ok")
+  const fs = require('fs');
+  const path = require('path');
+  
+  // Load the ntc.js file
+  const ntcPath = path.join(__dirname, 'ntc.js');
+  const ntcCode = fs.readFileSync(ntcPath, 'utf-8');
+  eval(ntcCode);
     let object = new Object()
-    let fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.ans = fetched.colors[0].tags[0].name
+    let fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+    object.ans = ntc.name(fetched)[1]
+   
+    console.timeEnd("Ok")
     let order = Math.floor(Math.random() * 4)
     if (order == 0) order = 1
+    
     if (order == 1) {
-        object.cl1 = fetched.colors[0].hex
-        fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl2 = fetched.colors[0].hex
-    fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl3 = fetched.colors[0].hex
+        object.cl1 = fetched
+        fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+
+    object.cl2 = fetched
+    fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+   
+    object.cl3 = fetched
     object.op1 = `./colorcorrect/?ans=${object.ans}&cl=${object.cl1}`
     object.op2 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl1}`
     object.op3 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl1}`
     }
     if (order == 2) {
-        object.cl2 = fetched.colors[0].hex
-        fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl1 = fetched.colors[0].hex
-    fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl3 = fetched.colors[0].hex
+        object.cl2 = fetched
+        fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')
+    
+    object.cl1 = fetched
+    fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')
+ 
+    object.cl3 = fetched
     object.op1 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl2}`
     object.op2 = `./colorcorrect/?ans=${object.ans}&cl=${object.cl2}`
     object.op3 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl2}`
     }
     if (order == 3) {
-        object.cl3 = fetched.colors[0].hex
-        fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl1 = fetched.colors[0].hex
-    fetched = await fetch(`https://www.colr.org/json/color/random`)
-    fetched = await fetched.json()
-    object.cl2 = fetched.colors[0].hex
+        object.cl3 = fetched
+        fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')
+   
+    object.cl1 = fetched
+    fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')
+ 
+    object.cl2 = fetched.colors[0]
     object.op1 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl3}`
     object.op2 = `./colorincorrect/?ans=${object.ans}&cl=${object.cl3}`
     object.op3 = `./colorcorrect/?ans=${object.ans}&cl=${object.cl3}`
     }
-    console.log(object)
+   
     res.render('color', object)
 })
 
@@ -8630,6 +8642,14 @@ app.get('/brands', async (req, res) => {
     easy: true
   },]
   res.json(brands[Math.floor(Math.random() * brands.length)])
+})
+
+app.get('/countries.json', async (req, res) => {
+  const countries = require('./countries.json')
+  const json = {
+    Data: countries.data[Math.floor(Math.random() * countries.data.length)]
+  }
+  res.json(json)
 })
 
 app.get('/:id', async (req, res) => {
