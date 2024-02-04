@@ -102,7 +102,7 @@ app.get('/incorrect', async (req, res) => {
 app.get('/logo', async (req, res) => {
     let object = new Object()
     let fetched
-     fetched = await fetch(`http://${req.headers.host}/brands`)
+     fetched = await fetch(`https://${req.headers.host}/brands`)
      fetched = await fetched.json()
     object.brand = fetched.brand
     object.clue = fetched.clue.split("|").join('\n')
@@ -113,12 +113,12 @@ app.get('/logo', async (req, res) => {
     if (order == 0) order = 1
     if (order == 1) {
         object.img1 = fetched.answer
-        fetched = await fetch(`http://${req.headers.host}/brands`, {
+        fetched = await fetch(`https://${req.headers.host}/brands`, {
            method:'GET'
        })
        fetched = await fetched.json()
        object.img2 = fetched.answer
-       fetched = await fetch(`http://${req.headers.host}/brands`, {
+       fetched = await fetch(`https://${req.headers.host}/brands`, {
           method:'GET'
       })
       fetched = await fetched.json()
@@ -130,12 +130,12 @@ app.get('/logo', async (req, res) => {
     }
     if (order == 2) {
         object.img2 = fetched.answer
-        fetched = await fetch(`http://${req.headers.host}/brands`, {
+        fetched = await fetch(`https://${req.headers.host}/brands`, {
            method:'GET'
        })
        fetched = await fetched.json()
        object.img1 = fetched.answer
-       fetched = await fetch(`http://${req.headers.host}/brands`, {
+       fetched = await fetch(`https://${req.headers.host}/brands`, {
           method:'GET'
       })
       fetched = await fetched.json()
@@ -147,12 +147,12 @@ app.get('/logo', async (req, res) => {
     }
     if (order == 3) {
         object.img3 = fetched.answer
-        fetched = await fetch(`http://${req.headers.host}/brands`, {
+        fetched = await fetch(`https://${req.headers.host}/brands`, {
            method:'GET'
        })
        fetched = await fetched.json()
        object.img2 = fetched.answer
-       fetched = await fetch(`http://${req.headers.host}/brands`, {
+       fetched = await fetch(`https://${req.headers.host}/brands`, {
           method:'GET'
       })
       fetched = await fetched.json()
