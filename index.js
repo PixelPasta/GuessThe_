@@ -16,7 +16,7 @@ app.get('/flag', async (req, res) => {
     const Headers = fetch.Headers
         let headers = new Headers();
         headers.set('Authorization', process.env.token)
-        let fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        let fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
@@ -27,13 +27,13 @@ app.get('/flag', async (req, res) => {
     if (order == 0) order = 1
     if (order == 1) {
         object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
         object.flag2 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
@@ -45,13 +45,13 @@ app.get('/flag', async (req, res) => {
     }
     if (order == 2) {
         object.flag2 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
         object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
@@ -63,13 +63,13 @@ app.get('/flag', async (req, res) => {
     }
     if (order == 3) {
         object.flag3 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
         fetched = await fetched.json()
         object.flag1 = `http://purecatamphetamine.github.io/country-flag-icons/3x2/${fetched.Data.altSpellings[0]}.svg`
-        fetched = await fetch(`${req.protocol}://${req.get('host')}/countries.json`, {
+        fetched = await fetch(`https://${req.get('host')}/countries.json`, {
             method:'GET',
             headers: headers
         })
