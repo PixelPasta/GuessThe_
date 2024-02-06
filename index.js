@@ -7,7 +7,7 @@ const util = require('util')
 
 app.set('view engine', 'ejs')
 app.set("views", path.join(__dirname, "views"))
-app.set("/", path.join(__dirname, "/"))
+app.use(express.static(__dirname));
 app.get('/', async (req, res) => {
     res.render('index')
 })
