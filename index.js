@@ -8645,13 +8645,7 @@ app.get('/brands', async (req, res) => {
   res.json(brands[Math.floor(Math.random() * brands.length)])
 })
 
-app.get('/countries.json', async (req, res) => {
-  const countries = require('./countries.json')
-  const json = {
-    Data: countries.data[Math.floor(Math.random() * countries.data.length)]
-  }
-  res.json(json)
-})
+
 
 app.get('/:id', async (req, res) => {
     res.sendFile(__dirname+'/public/'+req.params.id)
