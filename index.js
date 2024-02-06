@@ -1,3 +1,4 @@
+const { count } = require('console')
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
@@ -8646,7 +8647,12 @@ app.get('/brands', async (req, res) => {
 })
 
 app.get('/countries', async (req, res) => {
- let countries = await fetch(`https://${req.headers.host}/countries.json`)
+ let countries = await fetch(`https://${req.headers.host}/countries.json`,   {
+  headers: {
+      'User-Agent': '*',
+  }, //this is required by api provider
+})
+console.log(countries.status)
  json = await countries.json()
   const json = {
     Data: countries.data[Math.floor(Math.random() * countries.data.length)]
