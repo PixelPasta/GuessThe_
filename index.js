@@ -7,6 +7,7 @@ const util = require('util')
 
 app.set('view engine', 'ejs')
 app.set("views", path.join(__dirname, "views"))
+app.set("/", path.join(__dirname, "/"))
 app.get('/', async (req, res) => {
     res.render('index')
 })
@@ -8658,6 +8659,7 @@ app.get('/:id', async (req, res) => {
 
 app.listen(port, () => {
     console.log(`Listening to ${port}`)
+    console.log(__dirname)
 })
 
 module.exports = app;
