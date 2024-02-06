@@ -8654,7 +8654,7 @@ app.get('/countries.json', async (req, res) => {
 })
 
 app.get('/:id', async (req, res) => {
-    res.sendFile(__dirname+'/'+req.params.id)
+    res.sendFile(__dirname+'/public/'+req.params.id)
 })
 
 app.listen(port, () => {
