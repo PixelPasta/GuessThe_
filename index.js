@@ -7,7 +7,10 @@ const util = require('util')
 
 app.set('view engine', 'ejs')
 app.set("views", path.join(__dirname, "views"))
-app.use('/', express.static(__dirname))
+
+app.get('/styles.css', async (req, res) => {
+  res.sendFile(`${__dirname}/styles.css`)
+})
 
 app.get('/', async (req, res) => {
     res.render('index')
@@ -8656,6 +8659,7 @@ app.get('/countries.json', async (req, res) => {
 
 app.get('/:id', async (req, res) => {
     res.sendFile(__dirname+'/'+req.params.id)
+    console.log(__dirname+'')
 })
 
 app.listen(port, () => {
