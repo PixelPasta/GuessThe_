@@ -1,9 +1,11 @@
 {
   "scripts": {
     "start": "node index.js"
-   
   },
   "dependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
     "color-name": "^1.1.4",
     "ejs": "^3.1.8",
     "emoji-from-word": "^1.2.12",
@@ -12,4 +14,3 @@
     "node-fetch": "^2.6.9"
   }
 }
- 
