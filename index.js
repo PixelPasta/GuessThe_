@@ -7,11 +7,7 @@ const util = require('util')
 
 app.set('view engine', 'ejs')
 app.set("views", path.join(__dirname, "views"))
-
-app.get('/styles.css', async (req, res) => {
-  res.sendFile(`${__dirname}/styles.css`)
-})
-
+app.set("views", path.join(__dirname, ""))
 app.get('/', async (req, res) => {
     res.render('index')
 })
@@ -8658,13 +8654,11 @@ app.get('/countries.json', async (req, res) => {
 })
 
 app.get('/:id', async (req, res) => {
-    res.sendFile(__dirname+'/public/'+req.params.id)
-   
+    res.sendFile(__dirname+'/'+req.params.id)
 })
 
 app.listen(port, () => {
     console.log(`Listening to ${port}`)
-    console.log(__dirname)
 })
 
 module.exports = app;
