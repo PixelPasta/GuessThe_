@@ -8652,7 +8652,7 @@ app.get('/countries', async (req, res) => {
       'User-Agent': '*',
   }, //this is required by api provider
 })
-console.log(countries.status)
+console.log(countries.status) 
  json = await countries.json()
   const json = {
     Data: countries.data[Math.floor(Math.random() * countries.data.length)]
