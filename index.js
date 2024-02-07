@@ -192,6 +192,7 @@ app.get('/color', async (req, res) => {
   // Load the ntc.js file
   const ntcPath = path.join(__dirname, 'ntc.js');
   const ntcCode = fs.readFileSync(ntcPath, 'utf-8');
+  console.log(ntcCode)
   eval(ntcCode);
     let object = new Object()
     let fetched = (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
